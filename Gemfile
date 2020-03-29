@@ -57,3 +57,5 @@ gem 'faker', :git => 'https://github.com/faker-ruby/faker.git', :branch => 'mast
 gem 'nativeson'
 gem 'oj'
 gem 'activeadmin'
+gem 'activeadmin-ajax_filter'
+gem 'active_model_serializers'
