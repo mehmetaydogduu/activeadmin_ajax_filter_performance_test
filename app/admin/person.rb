@@ -1,4 +1,4 @@
-ActiveAdmin.register Movie do
+ActiveAdmin.register Person do
   include ActiveAdmin::AjaxFilter
 
   collection_action :ns_filter, method: :get do
@@ -12,7 +12,7 @@ ActiveAdmin.register Movie do
     collection = find_collection(except: [:pagination, :collection_decorator])
       .order(params[:order]).limit(params[:limit] || 10)
 
-    render json: collection, each_serializer: MoviesSerializer, root: false
+    render json: collection, each_serializer: PersonSerializer, root: false
   end
 
   collection_action :oj_filter, method: :get do
@@ -30,23 +30,5 @@ ActiveAdmin.register Movie do
   end
 
   form do |f|
-    f.input :title, as: :ajax_select, data: {
-      url: filter_admin_movies_path,
-      search_fields: [:title, :description, :director],
-      static_ransack: { active_eq: true },
-      ajax_search_fields: [:title, :description, :director]
-    }
-    f.input :description, as: :ajax_select, data: {
-      url: ns_filter_admin_movies_path,
-      search_fields: [:title, :description, :director],
-      static_ransack: { active_eq: true },
-      ajax_search_fields: [:title, :description, :director]
-    }
-    f.input :director, as: :ajax_select, data: {
-      url: ams_filter_admin_movies_path,
-      search_fields: [:title, :description, :director],
-      static_ransack: { active_eq: true },
-      ajax_search_fields: [:title, :description, :director]
-    }
   end
 end
